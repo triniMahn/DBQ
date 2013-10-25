@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQ", "DBQ\DBQ.csproj", "{FEB2E258-0CE1-409F-AB29-A9CBA5C471EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQTests", "DBQTests\DBQTests.csproj", "{9BE230BE-E517-4D09-BEC6-6AD7F86B053A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEB2E258-0CE1-409F-AB29-A9CBA5C471EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEB2E258-0CE1-409F-AB29-A9CBA5C471EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEB2E258-0CE1-409F-AB29-A9CBA5C471EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEB2E258-0CE1-409F-AB29-A9CBA5C471EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BE230BE-E517-4D09-BEC6-6AD7F86B053A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BE230BE-E517-4D09-BEC6-6AD7F86B053A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BE230BE-E517-4D09-BEC6-6AD7F86B053A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BE230BE-E517-4D09-BEC6-6AD7F86B053A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
