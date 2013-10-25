@@ -64,3 +64,70 @@ and/or a scalability bottleneck?
 Batch Processing Scenarios
 --------------------------
 
+- **Continuous:** Example: In the case of transaction processing, orders will be queued and processed in a continuous manner
+- **Command-based:** Example: In the case where a batch of items must be processed, once the batch items have been queued and processed, queue processing no longer needs to be active, and the queue terminates itself
+- **Schedule-based:** A set of items must be queued and processed at a certain time. For example, scheduled batch processing must occur on a daily basis and preferably in the early hours of the day to reduce transaction processing load. 
+Tech. Note: Use Timer class for implementation.
+
+Framework (from the ground, up)
+-------------------------------
+
+**ThreadContainer**
+
+- The "worker" thread for a specific Queue
+- Wraps the standard .NET, System.Threading.Thread
+- Provides properties and methods to set operational attributes, such as:
+	- the rate at which items are processed (i.e. time between processing each item)
+	- the rate at which batches are processed
+	- etc.
+- Holds a reference to the Queue for which it is processing items
+- Contains the "main" method for the thread
+	-calls Queue::DequeueForProcessing to obtain items for processing
+
+**ThreadGuardian**
+
+- In order to scale more easily, and when it's necessary to process more items more quickly, functionality has been created to allow each Queue have more than one worker thread. The collection of threads that any Queue might posses is managed/housed within the ThreadGuardian class
+- This class provides a few key operations on groups of ThreadContainer objects. It can:
+	- create the objects and start the threads
+	- stop all the threads that are running for a specific Queue
+	- check to see if all of the threads for a specific queue are running
+	- re-start (but not recreate any instances) the threads if they were previously stopped
+- The threads are started with a delay between each start to mitigate the risk of machine resource issues
+
+**Queue**
+
+- A class that houses operations and settings related to QueueItem processing queues
+- Contains basic operations that should be performed on a Queue:
+	- Start
+	- Stop
+	- Verify that the worker threads are running (via it's own ThreadGuardian instance)
+	- A way to dequeue items from the DB for individual processing
+	- A way to enqueue items for processing
+
+**QueueContainer**
+
+- Simple wrapper for Queue instance
+
+**QueueItem**
+
+- The actual class that contains data related a queue item that requires processing
+
+**QueueItemProcessor**
+
+- For use with a QueueItemProcessorController, each processor has one significant method, "process", which does something with the QueueItem instance it is passed
+
+**QueueItemProcessorController**
+
+- In it's most important method, "processItem", it cycles through any QueueItem pre, or post processors that may exist within it's internal collections. It also executes the "defaultProcessAction" of the QueueItem in between all of the pre/post processors
+- Note that QueueItem::defaultProcessAction may not execute if a pre-processor has its HaltProcessingOnError property set to true. This is useful in the case where a pre-processor is used to validate some data (asynchronously from submission, of course) before the bulk of the processing is done on the QueueItem
+
+**QueueItemProcessorControllerFactory**
+
+- Class names are getting a bit out-of-hand at this point, but they're still descriptive. This class manages the creation of and caching of QueueItemProcessorController instances for use in the ThreadMain methods of the worker threads when processing queue items. The factory returns the appropriate controller based on the QueueItem type
+
+Class Diagram
+-------------
+
+
+
+
