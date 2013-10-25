@@ -128,6 +128,8 @@ Framework (from the ground, up)
 Class Diagram
 -------------
 
+![alt tag](https://github.com/triniMahn/DBQ/blob/master/DBQ/Doc/Queues%20-%20Framework%20Class%20Diagram.png)
 
+All questions welcome. Find me here: www.arkitekt.ca
 
 
