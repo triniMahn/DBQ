@@ -69,7 +69,13 @@ Batch Processing Scenarios
 - **Schedule-based:** A set of items must be queued and processed at a certain time. For example, scheduled batch processing must occur on a daily basis and preferably in the early hours of the day to reduce transaction processing load. 
 Tech. Note: Use Timer class for implementation.
 
-Framework (from the ground, up)
+Class Diagram
+-------------
+
+![Framework Class Diagram](https://github.com/triniMahn/DBQ/raw/master/DBQ/Doc/Framework_Class_Diagram.png)
+
+
+Framework Classes (from the ground, up)
 -------------------------------
 
 **ThreadContainer**
@@ -125,11 +131,7 @@ Framework (from the ground, up)
 
 - Class names are getting a bit out-of-hand at this point, but they're still descriptive. This class manages the creation of and caching of QueueItemProcessorController instances for use in the ThreadMain methods of the worker threads when processing queue items. The factory returns the appropriate controller based on the QueueItem type
 
-Class Diagram
--------------
 
-![Framework Class Diagram](https://github.com/triniMahn/DBQ/raw/master/DBQ/Doc/Framework_Class_Diagram.png)
-
-All questions welcome. Find me here: www.arkitekt.ca
+All questions welcome. Find me here www.arkitekt.ca & here blog.arkitekt.ca
 
 
